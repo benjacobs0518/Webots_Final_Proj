@@ -1,0 +1,170 @@
+#VRML_SIM R2021b utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.0253192042069985 -0.9784983919162966 -0.2046944916590231 2.930401023157202
+  position -14.30289654784167 27.54136290963538 -61.81377310908056
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 50 25
+  floorAppearance Parquetry {
+  }
+  wallHeight 0.5
+}
+Cypress {
+  translation -17.33 0 0.42
+}
+Cypress {
+  translation -17.33 0 -0.38
+  name "cypress tree(1)"
+}
+Cypress {
+  translation -17.33 0 -1.28
+  name "cypress tree(2)"
+}
+Cypress {
+  translation -17.33 0 -2.11
+  name "cypress tree(3)"
+}
+Cypress {
+  translation -17.33 0 -3.02
+  name "cypress tree(4)"
+}
+Cypress {
+  translation -17.33 0 -4.01
+  name "cypress tree(5)"
+}
+StreetLight {
+  translation 13.83 0 -7.29
+  rotation 0 1 0 1.5708
+}
+StraightRoadSegment {
+  translation 10 0.005 -12.5
+  width 5
+  length 25
+}
+HouseWithGarage {
+  translation -8.85 0 7.85
+}
+Bench {
+  translation 13.92 0 -10.48
+  rotation 0 1 0 -1.5707953071795862
+}
+TeslaModel3Simple {
+  translation 15.621 0.999251 4.68
+  rotation 0 0 -1 1.8326
+}
+PicketFenceWithDoor {
+  translation -1.15001 0 4.06999
+  rotation 0 1 0 3.14159
+}
+PicketFence {
+  translation 3.19999 0 5.81
+  rotation 0 1 0 1.5708
+  name "picket fence(4)"
+}
+PicketFence {
+  translation 3.19999 0 7.56
+  rotation 0 1 0 1.5708
+  name "picket fence(1)"
+}
+PicketFence {
+  translation 3.19999 0 9.17
+  rotation 0 1 0 1.5708
+  name "picket fence(2)"
+}
+PicketFence {
+  translation 3.19999 0 10.82
+  rotation 0 1 0 1.5708
+  name "picket fence(3)"
+}
+PicketFence {
+  translation 3.19999 0 12.52
+  rotation 0 1 0 1.5708
+  name "picket fence(5)"
+}
+Swing {
+  translation 21.81 0 -2.99
+  rotation 0 1 0 -1.5707953071795862
+}
+Pergolas {
+  translation -21.3 0 8.11
+}
+OilBarrel {
+  translation 1.82 0.32 -7.38
+  rotation 1 0 0 1.5708
+}
+OilBarrel {
+  translation 2.56 0.750003 -7.36
+  rotation 1 0 0 -3.1415853071795863
+  name "oil barrel(1)"
+}
+OilBarrel {
+  translation 1.82 0.330001 -8.52
+  rotation 1 0 0 1.5708
+  name "oil barrel(2)"
+}
+OilBarrel {
+  translation 1.82 0.300002 -9.64
+  rotation 1 0 0 1.5708
+  name "oil barrel(3)"
+}
+Pedestrian {
+  translation 14.2977 1.27 7.42916
+  rotation 0 1 0 -2.3561953071795863
+}
+FifaSoccerBall {
+  translation -9.39 0.3 -2.76
+}
+WoodenPalletStack {
+  translation 1.99 0 -11.31
+}
+WoodenPalletStack {
+  translation 0.71 0 -9.99
+  name "wooden pallet stack(1)"
+}
+Pedestrian {
+  translation -2.98 1.27 -1.03
+  rotation 0 1 0 3.14159
+  name "pedestrian(1)"
+  pantsColor 1 0.333333 0
+}
+Pedestrian {
+  translation -3.94 1.27 -1.6
+  rotation 0 -1 0 -2.3561953071795863
+  name "pedestrian(2)"
+  shirtColor 0.333333 0.333333 1
+}
+Pedestrian {
+  translation -3.649 1.27 -3.17578
+  rotation 0 -1 0 -5.307179586466759e-06
+  name "pedestrian(3)"
+  shirtColor 1 0.666667 1
+}
+Pedestrian {
+  translation -2.07938 1.27 -1.9798
+  rotation 0 1 0 -1.5707953071795862
+  name "pedestrian(4)"
+}
+Pedestrian {
+  translation -2.53938 1.27 -3.2998
+  rotation 0 1 0 1.01503e-06
+  name "pedestrian(5)"
+  shirtColor 1 1 1
+}
+Tractor {
+  translation -15.89 0.217204 -4.63172
+  rotation -0.01740180244579218 -0.9977371402301688 -0.06494440912782043 -2.619125307179586
+  name "vehicle(1)"
+}
+TableWithUmbrella {
+  translation -6.98 0 -7.98
+}
+Moose {
+  translation -21.81 0 8.08008
+}
