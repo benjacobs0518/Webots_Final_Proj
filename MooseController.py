@@ -1,7 +1,7 @@
 """MooseController controller."""
 
 # You may need to import some classes of the controller module. Ex:
-#  from controller import Robot, Motor, DistanceSensor
+ # from controller import Robot, Motor, DistanceSensor
 from __future__ import print_function
 from controller import Robot, Motor, DistanceSensor
 import math
@@ -115,21 +115,22 @@ timestep = int(robot.getBasicTimeStep())
 
 # You should insert a getDevice-like function in order to get the
 # instance of a device of the robot. Something like:
-#  motor = robot.getDevice('motorname')
-#  ds = robot.getDevice('dsname')
-#  ds.enable(timestep)
+ # motor = robot.getDevice('motorname')
+ # ds = robot.getDevice('dsname')
+ # ds.enable(timestep)
 
-TIME_STEP = 16;
 TARGET_POINTS_SIZE = 1
 DISTANCE_TOLERANCE = 1.5
 MAX_SPEED = 7.0
 TURN_COEFFICIENT = 4
 N_PARTS = 8
-AXLE_LENGTH = 
-MAX_SPEED_MS = 
+#AXLE_LENGTH = 
+#MAX_SPEED_MS = 
 
 names = ["left motor 1",  "left motor 2",  "left motor 3",  "left motor 4",
                           "right motor 1", "right motor 2", "right motor 3", "right motor 4"];
+
+timestep = int(robot.getBasicTimeStep())
 
 gps = robot.getDevice("gps")
 gps.enable(timestep)
@@ -149,7 +150,7 @@ robot_parts = []
 for i in range(8):
     robot_parts.append(robot.getDevice(names[i]));
     robot_parts[i].setPosition(float('inf'));
-    robot_parts[i].setVelocity(7 / 2.0)
+    robot_parts[i].setVelocity(MAX_SPEED)
     
     
 def set_speed(left, right):
@@ -213,13 +214,13 @@ while robot.step(timestep) != -1:
         vR = 0
     # Odometry code. Don't change vL or vR speeds after this line.
     # We are using GPS and compass for this lab to get a better pose but this is how you'll do the odometry
-pose_x += (vL+vR)/2/MAX_SPEED*MAX_SPEED_MS*timestep/1000.0*math.cos(pose_theta)
-pose_y -= (vL+vR)/2/MAX_SPEED*MAX_SPEED_MS*timestep/1000.0*math.sin(pose_theta)
-pose_theta += (vR-vL)/AXLE_LENGTH/MAX_SPEED*MAX_SPEED_MS*timestep/1000.0
+    pose_x += (vL+vR)/2/MAX_SPEED*MAX_SPEED_MS*timestep/1000.0*math.cos(pose_theta)
+    pose_y -= (vL+vR)/2/MAX_SPEED*MAX_SPEED_MS*timestep/1000.0*math.sin(pose_theta)
+    pose_theta += (vR-vL)/AXLE_LENGTH/MAX_SPEED*MAX_SPEED_MS*timestep/1000.0
 
     # print("X: %f Z: %f Theta: %f" % (pose_x, pose_y, pose_theta))
 
     # Actuator commands
-set_speed(vL, vR)
+    set_speed(vL, vR)
     #robot_parts[MOTOR_LEFT].setVelocity(vL)
     #robot_parts[MOTOR_RIGHT].setVelocity(vR)
