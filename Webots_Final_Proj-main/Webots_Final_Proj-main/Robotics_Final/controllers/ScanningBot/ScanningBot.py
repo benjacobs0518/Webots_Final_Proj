@@ -1,6 +1,6 @@
 """lab5 controller."""
 from __future__ import print_function
-from controller import Robot, Motor, Camera, RangeFinder, Lidar, Keyboard
+from controller import Robot, Motor, Camera, RangeFinder, Lidar, Keyboard, Emitter
 import math
 import numpy as np
 from matplotlib import pyplot as plt
@@ -146,6 +146,7 @@ for i in range(N_PARTS):
 
 # range = robot.getDevice('range-finder')
 # range.enable(timestep)
+emitter = robot.getDevice('emitter')
 camera = robot.getDevice('camera')
 camera.enable(timestep)
 camera.recognitionEnable(timestep)

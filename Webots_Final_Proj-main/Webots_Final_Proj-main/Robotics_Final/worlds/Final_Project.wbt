@@ -4,7 +4,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation 0.006147866131550185 -0.9397421952096445 -0.3418286270700375 3.224702340102051
-  position 24.86487691544627 8.2217002686587 -17.07826028962292
+  position 17.023147768275994 27.805247080583307 -29.579152849084075
 }
 TexturedBackground {
 }
@@ -172,6 +172,8 @@ TiagoSteel {
   translation 23.03 0.094957 -11.35
   controller "ScanningBot"
   cameraSlot [
+    Emitter {
+    }
     Camera {
       recognition Recognition {
       }
