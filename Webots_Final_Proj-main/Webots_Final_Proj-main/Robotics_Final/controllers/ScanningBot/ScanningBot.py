@@ -146,9 +146,9 @@ for i in range(N_PARTS):
 
 # range = robot.getDevice('range-finder')
 # range.enable(timestep)
-# camera = robot.getDevice('camera')
-# camera.enable(timestep)
-# camera.recognitionEnable(timestep)
+camera = robot.getDevice('camera')
+camera.enable(timestep)
+camera.recognitionEnable(timestep)
 lidar = robot.getDevice('Hokuyo URG-04LX-UG01')
 lidar.enable(timestep)
 lidar.enablePointCloud()
@@ -181,6 +181,8 @@ lidar_offsets = lidar_offsets[83:len(lidar_offsets)-83] # Only keep lidar readin
 
 map = None
 ##### ^^^ [End] Do Not Modify ^^^ #####
+
+
 
 ##################### IMPORTANT #####################
 # Set the mode here. Please change to 'autonomous' before submission
@@ -217,8 +219,8 @@ if mode == 'planner':
 
     # Part 2.1: Load map (map.npy) from disk and visualize it
     map1 = np.load("map.npy")
-    # plt.imshow(np.rot90(map1,3)) 
-    # plt.show()
+    plt.imshow(np.rot90(map1,3)) 
+    plt.show()
     
     # Part 2.2: Compute an approximation of the “configuration space”
     map_temp = map1.copy()
@@ -238,20 +240,17 @@ if mode == 'planner':
     # print(map1.size)
 
     # Part 2.3 continuation: Call path_planner
-    graph = AStarGraph(map1, 360, 360)
+    graph = AStarGraph(map1, 500, 1000)
     # graph.checker()
-    result, cost = AStarSearch((int(360-int(8.05674*30)),int(4.46793*30)), (int(7/12*360),int(10/12*360)), graph)
+    result, cost = AStarSearch((int(500-int((8.08+13.5)*17)),int((-21.8+26.0)*17)), (int(7/12*360),int(10/12*360)), graph)
     # print("route", result)  
     for h in result:
         map1[h[0],h[1]] = 2
-    
     # plt.imshow(np.rot90(map1,3))
     # plt.show()  
     
     # Part 2.4: Turn paths into waypoints and save on disk as path.npy and visualize it
     waypoints = []
-    
-    # NOTE: if a* function worked, this would be used for part 2.4
     
     for m in result:
         # print((m[1]/30.0,(-m[0]+360)/30.0))
@@ -268,20 +267,17 @@ if mode == 'planner':
 
 # Initialize your map data structure here as a 2D floating point array
 map = np.zeros((500,1000)) # Replace None by a numpy 2D floating point array
+map_disaster = np.zeros((500,1000))
 waypoints = []
 
 if mode == 'autonomous':
     # Part 3.1: Load path from disk and visualize it
-    # NOTE: if A* worked, the following code would be used
     waypoints = np.load("path.npy") # Replace with code to load your path
-    # print(waypoints)
-    # NOTE: Manual path from starting position to around 10.0,7.0 in meters
-    # waypoints = [[5.5,6],[7,5.1],[9,5.1]]
     
 state = 0 # use this to iterate through your path
 
 # m = 0
-
+end_position = []
 d = 0
 b = True
 while robot.step(timestep) != -1 and mode != 'planner':
@@ -325,30 +321,25 @@ while robot.step(timestep) != -1 and mode != 'planner':
         if rho < LIDAR_SENSOR_MAX_RANGE:
             # Part 1.3: visualize map gray values.
             if(map[500-int((wy+13.5)*scale),int((wx+26.0)*scale)] < 1):
+                temp = camera.getRecognitionNumberOfObjects()
                 map[500-int((wy+13.5)*scale),int((wx+26.0)*scale)] += 0.005
-                
-            
-            
-            
-            
+                # if(camera.getRecognitionNumberOfObjects() != 0):
+                    #map = np.multiply(map_disaster>0.5,1)
+                    #map[500-int((wy+13.5)*scale),int((wx+26.0)*scale)] = 2
+                    
+                    # for i in range(len(map)):
+                        # for j in range(len(map[i]):
+                            # floatlist=[map[i][k]]
+                            # message=struct.pack('%sf' % len(floatlist), *floatlist)
+                            # emitter.send(message)
+                    # print(end_position[0])
+                    # print(end_position[1])
             # You will eventually REPLACE the following 2 lines with a more robust version of the map
             # with a grayscale drawing containing more levels than just 0 and 1.
             g = int(map[500-int((wy+13.5)*scale),int((wx+26.0)*scale)]*255)
             color = g*256**2+g*256+g
             display.setColor(color)
-            
-            # display.setColor(0xFFFFFF)
-            # display.drawPixel(360-int(wy*scale),-int(wx*scale))
-            print(500-int((wy+13.5)*scale),int((wx+26.0)*scale))
             display.drawPixel(500-int((wy+13.5)*scale),int((wx+26.0)*scale))
-            
-            # print(360-int(wy*30))
-            # print(int(wx*30))
-            # display.setColor(0xFFFFFF)
-            # display.drawPixel(360-int(wy*30),int(wx*30))
-            # display.setColor(0xFFFFFF)
-            # display.drawPixel(2*m,m)
-            # m += 1
 
     # Draw the robot's current pose on the 360x360 display
     # display.setColor(int(0xFF0000))
@@ -380,7 +371,7 @@ while robot.step(timestep) != -1 and mode != 'planner':
             vR = 0
         elif key == ord('S'):
             # Part 1.4: Filter map and save to filesystem
-            np.save("map.npy",np.multiply(map>0.5,1))
+            np.save("map.npy",map)
             print("Map file saved")
             # print(np.multiply(map>0.5,1)[73,161])
         elif key == ord('L'):
